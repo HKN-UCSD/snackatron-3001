@@ -1,4 +1,4 @@
 # Snackatron 3001
 HKN's online ecommerce store for snacks, drinks, and merch
 
-![image](https://user-images.githubusercontent.com/59634395/233516834-6909a55c-3967-499f-b8d7-a4b340c55e59.png)
+![image](https://user-images.githubusercontent.com/59634395/233517417-67c5622c-3f8f-46a7-9489-7478ea19c33e.png)
