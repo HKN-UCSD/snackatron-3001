@@ -1,3 +1,68 @@
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Thin.ttf");
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-ThinItalic.ttf");
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Regular.ttf");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Italic.ttf");
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Medium.ttf");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-MediumItalic.ttf");
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Bold.ttf");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-BoldItalic.ttf");
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Black.ttf");
+	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-BlackItalic.ttf");
+	font-weight: 900;
+	font-style: italic;
+}
+
 .App {
   text-align: center;
   background-color: #262933;
@@ -38,9 +103,95 @@
     flex: 1 0 auto;
     margin: 16px 16px 0px 16px;
 }
+.title {
+    font-family: "Poppins";
+    font-size: 40px;
+    font-weight: 500;
+}
+#price-table {
+    table-layout: fixed;
+    width: 100%;
+}
+#price-table td:nth-child(1) {
+    font-family: "Poppins";
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    width: 70%;
+    padding-left: 10px;
+}
+#price-table td:nth-child(2) {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    text-align: right;
+    width: 18%;
+    vertical-align: middle;
+}
+#price-table td:nth-child(3) {
+    width: 12%;
+}
+.add {
+    font-size: 36px;
+    font-weight: 500;
+    background-color: rgba(0,0,0,0);
+    border-width: 0px;
+    vertical-align: middle;
+}
+.add:hover {
+    font-weight: 700;
+    cursor: pointer;
+}
+.category {
+    font-family: "Poppins";
+    font-size: 32px;
+    font-weight: 700;
+    padding: 0px;
+}
+#cart-table {
+    table-layout: fixed;
+    width: 100%;
+}
+#cart-table td:nth-child(1) {
+    font-family: "Poppins";
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    width: 70%;
+    padding-left: 10px;
+}
+#cart-table td:nth-child(2) {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    width: 18%;
+    vertical-align: middle;
+}
+#cart-table td:nth-child(3) {
+    width: 12%;
+}
+.trash-img {
+    height: 24px;
+    width: auto;
+    flex-shrink: 0;
+}
+.trash {
+    border:none;
+    background-color: rgba(0,0,0,0);
+}
+.trash:hover {
+    cursor: pointer;
+}
 #checkout {
     background-color: #d9ffd2;
     border-radius: 16px;
     margin: 16px;
     flex: 0 0 3em;
+    font-family: "Poppins";
+    font-size: 40px;
+    font-weight: 500;
+}
+#checkout:hover {
+    background-color: #a9cfa2;
+    cursor: pointer;
 }
