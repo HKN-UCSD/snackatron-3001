@@ -17,7 +17,7 @@ const { JSDOM } = jsdom;
 async function sendEmail(email, items, date, orderNum) {
    return new Promise((resolve, reject) => {
       var emailSent = false;
-      var emailContent = fs.readFileSync('./src/emailReceipt.html', 'utf8');
+      var emailContent = fs.readFileSync('./src/utils/emailReceipt.html', 'utf8');
 
       const populatedEmail = populate(emailContent, items, date, orderNum);
 
