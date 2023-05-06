@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const template = './src/App.js';
 
@@ -32,10 +33,13 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: './src/index.html',
       inject: true
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
     })
   ],
   devServer: {
-    static: path.resolve(__dirname, './dist'),
+    static: [path.resolve(__dirname, './dist'), path.resolve(__dirname, './public')],
     port: 8080
   },
   resolve: {

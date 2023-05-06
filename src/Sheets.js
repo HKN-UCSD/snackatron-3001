@@ -1,23 +1,23 @@
 const { OAuth2Client } = require('google-auth-library');
-//const http = require('http');
-//const url = require('url');
-//const open = require('open');
-//const destroyer = require('server-destroy');
+const http = require('http');
+const url = require('url');
+const open = require('open');
+const destroyer = require('server-destroy');
 
-//import credentials from './credentials.json'
+import credentials from './credentials.json'
 
-export function test() {
-  //const oAuth2Client = await getAuthenticatedClient();
+export async function test() {
+  const oAuth2Client = await getAuthenticatedClient();
 }
-/*
+
 function getAuthenticatedClient() {
   return new Promise((resolve, reject) => {
     // create an oAuth client to authorize the API call.  Secrets are kept in a `keys.json` file,
     // which should be downloaded from the Google Developers Console.
     const oAuth2Client = new OAuth2Client(
-      credentials.client_id,
-      credentials.client_secret,
-      credentials.redirect_uris[0]
+      credentials.installed.client_id,
+      credentials.installed.client_secret,
+      credentials.installed.redirect_uris[0]
     );
 
     // Generate the url that will be used for the consent dialog.
@@ -58,4 +58,3 @@ function getAuthenticatedClient() {
     destroyer(server);
   });
 }
-*/

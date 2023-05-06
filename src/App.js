@@ -2,6 +2,7 @@ import './App.css';
 import { test } from './Sheets.js'
 
 function App() {
+  test();
   return (
     <div className="App">
       <div id="panels">
