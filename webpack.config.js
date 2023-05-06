@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const template = require('./src/App.js');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
@@ -10,7 +11,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
@@ -27,8 +28,15 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './src/index.html',
+      inject: true
+    })
+  ],
   devServer: {
     static: path.resolve(__dirname, './dist'),
+    port: 8080
   },
   resolve: {
     fallback: {
