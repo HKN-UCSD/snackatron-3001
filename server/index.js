@@ -43,7 +43,12 @@ app.get("/menu", (req, res) => {
 
 /**
  * body: {email: <email>, order: [{id: <id>, count: <count>}]}
- * responds with {finalDebt: <debt after transaction>}
+ * responds with {
+ *    orderNumber: <random 9 digit order number>,
+ *    finalDebt: <debt after transaction>,
+ *    total: <total of transaction>,
+ *    time: <timestamp of transaction>
+ * }
  */
 app.post("/transaction", (req, res) => {
   authorize().then((auth) => writeTransaction(auth, req.body)).then((data) => {

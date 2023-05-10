@@ -395,8 +395,8 @@ export async function writeTransaction(auth, transaction) {
     ret['time'] = moment().format('YYYY/MM/DD, HH:mm:ss');
     var total = 0;
     let receipt = ret['time'];
-    for (let i in transaction.order) {
-      let entry = transaction.order[i];
+    for (let i in transaction.cart) {
+      let entry = transaction.cart[i];
       let itemInfo = MENU.values[entry.id];
       if (itemInfo === -1)
         return Promise.reject(`Unable to find item of id ${entry.id}`);
@@ -422,7 +422,7 @@ export async function writeTransaction(auth, transaction) {
       resource: { values: [[id]] }
     });
     receipt = id.toString().padStart(9, '0') + "\n" + receipt;
-    ret['order_number'] = id.toString().padStart(9, '0');
+    ret['orderNumber'] = id.toString().padStart(9, '0');
     ret['total'] = total;
 
     let request = {
@@ -433,7 +433,7 @@ export async function writeTransaction(auth, transaction) {
     };
     return sheets.spreadsheets.values.update(request).then((res) => {
       let data = [];
-      transaction.order.forEach((entry) => {
+      transaction.cart.forEach((entry) => {
         let itemInfo = MENU.values[entry.id];
         itemInfo[4] -= entry.count;
         data.push({ range: `Menu!F${MENU.ids.indexOf(entry.id) + 2}:F${MENU.ids.indexOf(entry.id) + 2}`, values: [[itemInfo[4]]] });
