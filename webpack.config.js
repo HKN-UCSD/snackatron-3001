@@ -26,7 +26,15 @@ module.exports = {
       {
         test: /\.svg$/,
         use: ['file-loader']
-      }
+      },
+      {
+        test: /node_modules\/some-module\/index\.js$/,
+        loader: 'string-replace-loader',
+        options: {
+          search: 'var Buffer = require("buffer").Buffer;',
+          replace: 'var Buffer = require("buffer/").Buffer;',
+        },
+      },
     ]
   },
   plugins: [
@@ -52,8 +60,8 @@ module.exports = {
 
       url: require.resolve('url/'),
       util: require.resolve('util/'),
-      assert: require.resolve('assert/'),
-      buffer: require.resolve('buffer/'),
+      assert: require.resolve('assert'),
+      buffer: require.resolve('buffer'),
       os: require.resolve('os-browserify/browser'),
       path: require.resolve('path-browserify'),
       http: require.resolve('stream-http'),
@@ -61,6 +69,7 @@ module.exports = {
       stream: require.resolve('stream-browserify'),
       crypto: require.resolve('crypto-browserify'),
       querystring: require.resolve('querystring-es3'),
+      zlib: require.resolve('browserify-zlib')
     },
   },
 };
