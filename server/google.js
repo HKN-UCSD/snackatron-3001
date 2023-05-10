@@ -55,78 +55,115 @@ export async function authorize() {
 export async function getMenu(auth) {
   if (MENU === undefined) {
     const sheets = google.sheets({ version: 'v4', auth });
-    const res = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: 'Menu!B2:F',
-      majorDimension: 'ROWS',
-    });
-    MENU = {
-      tags: ["id", "name", "price", "category", "stock"], values: res.data.values.reduce((map, obj) => {
-        map[obj[0]] = obj;
-        return map;
-      }, {})
-    };
+    try {
+      const res = await sheets.spreadsheets.values.get({
+        spreadsheetId: SPREADSHEET_ID,
+        range: 'Menu!B2:F',
+        majorDimension: 'ROWS',
+      });
+      MENU = {
+        tags: ["id", "name", "price", "category", "stock"], ids: res.data.values.map((entry) => entry[0]),
+          values: res.data.values.reduce((map, obj) => {
+            map[obj[0]] = obj;
+            return map;
+          }, {})
+      };
+    }
+    catch (err) {
+      return Promise.reject("Unable to get menu");
+    }
   }
-  return MENU;
+  return Promise.resolve(MENU);
 }
 
 export async function getAccounts(auth) {
   if (ACCOUNTS === undefined) {
     const sheets = google.sheets({ version: 'v4', auth });
-    const res = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: 'Transactions!1:1',
-      majorDimension: 'ROWS',
-    });
-    ACCOUNTS = [];
-    let values = res.data.values[0];
-    while (values.length)
-      ACCOUNTS.push(values.splice(0, 2)[0]);
+    try {
+      const res = await sheets.spreadsheets.values.get({
+        spreadsheetId: SPREADSHEET_ID,
+        range: 'Transactions!1:1',
+        majorDimension: 'ROWS',
+      });
+      ACCOUNTS = [];
+      let values = res.data.values[0];
+      while (values.length)
+        ACCOUNTS.push(values.splice(0, 2)[0]);
+    }
+    catch (err) {
+      return Promise.reject("Unable to get accounts");
+    }
   }
-  return ACCOUNTS;
+  return Promise.resolve(ACCOUNTS);
 }
 
 export async function getAccountInfo(auth, email) {
-  await getAccounts(auth);
+  try { await getAccounts(auth); } catch (err) { return Promise.reject(err); }
 
   let index = ACCOUNTS.indexOf(email);
   if (index === -1) {
-    return {};
+    //ACCOUNTS.push(email);
+    return Promise.resolve({});
   } else {
     const sheets = google.sheets({ version: 'v4', auth });
-    const res = await sheets.spreadsheets.values.get({
-      spreadsheetId: '15GWYVCJnuSpHrB5T5eNYLlaHlxbrEFelh9i66xxpbFI',
-      range: `Transactions!R${1}C${2 * index + 1}:R${3}C${2 * index + 2}`,
-      majorDimension: 'ROWS',
-    });
-    let values = res.data.values;
-    return {email: values[0][0], name: values[1][0], debt: values[2][1], transactionCount: values[2][0], index: index};
+    try {
+      const res = await sheets.spreadsheets.values.get({
+        spreadsheetId: '15GWYVCJnuSpHrB5T5eNYLlaHlxbrEFelh9i66xxpbFI',
+        range: `Transactions!R${1}C${2 * index + 1}:R${3}C${2 * index + 2}`,
+        majorDimension: 'ROWS',
+      });
+      let values = res.data.values;
+      return Promise.resolve({ email: values[0][0], name: values[1][0], debt: values[2][1], transactionCount: values[2][0], index: index });
+    }
+    catch (err) {
+      return Promise.reject("Unable to get account info");
+    }
   }
 }
 
 export async function writeTransaction(auth, transaction) {
-  await getMenu(auth);
+  try { await getMenu(auth); } catch (err) { return Promise.reject(err); }
 
-  const info = await getAccountInfo(auth, transaction.email);
-  let res = {};
-  res['time'] = moment().format('YYYY/MM/DD, HH:mm:ss');
-  let total = 0;
-  let receipt = res['time'];
-  transaction.order.forEach((entry) => {
-    let itemInfo = MENU.values[entry.id];
-    receipt += `\n${itemInfo[1]} x${entry.count} at ${itemInfo[2]}`;
-    total += parseFloat(itemInfo[2].slice(1), 10) * entry.count;
-  });
-  const sheets = google.sheets({ version: 'v4', auth });
-  let r = parseInt(info.transactionCount, 10) + 4; let c = 2 * info.index + 1
-  let request = {
-    spreadsheetId: SPREADSHEET_ID,
-    range: `Transactions!R${r}C${c}:R${r}C${c+1}`,
-    valueInputOption: 'USER_ENTERED',
-    resource: { values: [[receipt, total]] }
-  };
-  await sheets.spreadsheets.values.update(request);
-
-  return {};
-  //return { values: res.data.values };
+  try {
+    const info = await getAccountInfo(auth, transaction.email);
+    let res = {};
+    res['time'] = moment().format('YYYY/MM/DD, HH:mm:ss');
+    var total = 0;
+    let receipt = res['time'];
+    for (let i in transaction.order) {
+      let entry = transaction.order[i];
+      let itemInfo = MENU.values[entry.id];
+      if (itemInfo === -1)
+        return Promise.reject(`Unable to find item of id ${entry.id}`);
+      if (itemInfo[4] < entry.count)
+        return Promise.reject(`Requested ${entry.count} of ${itemInfo[1]} but there is only ${itemInfo[4]} in stock`)
+      receipt += `\n${itemInfo[1]} x${entry.count} at ${itemInfo[2]}`;
+      total += parseFloat(itemInfo[2].slice(1), 10) * entry.count;
+    }
+    const sheets = google.sheets({ version: 'v4', auth });
+    let r = parseInt(info.transactionCount, 10) + 4; let c = 2 * info.index + 1
+    let request = {
+      spreadsheetId: SPREADSHEET_ID,
+      range: `Transactions!R${r}C${c}:R${r}C${c+1}`,
+      valueInputOption: 'USER_ENTERED',
+      resource: { values: [[receipt, total]] }
+    };
+    return sheets.spreadsheets.values.update(request).then((res) => {
+      let data = [];
+      transaction.order.forEach((entry) => {
+        let itemInfo = MENU.values[entry.id];
+        itemInfo[4] -= entry.count;
+        data.push({ range: `Menu!F${MENU.ids.indexOf(entry.id) + 2}:F${MENU.ids.indexOf(entry.id) + 2}`, values: [[itemInfo[4]]]});
+      });
+      return sheets.spreadsheets.values.batchUpdate({
+        spreadsheetId: SPREADSHEET_ID,
+        resource: { data: data, valueInputOption: 'RAW' }
+      }).then((res) => {
+        return Promise.resolve({finalDebt: parseFloat(info.debt.slice(1),10) + total});
+      });
+    }).catch((err) => { return Promise.reject('Unable to complete transaction') });
+  }
+  catch (err) {
+    return Promise.reject(err);
+  }
 }
