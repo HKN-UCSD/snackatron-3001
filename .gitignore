@@ -23,5 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 server/node_modules
+server/credentials.json
+server/token.json
 
 .vs/*
