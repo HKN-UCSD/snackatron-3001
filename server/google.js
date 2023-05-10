@@ -11,10 +11,12 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const TOKEN_PATH = path.join(process.cwd(), './server/token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), './server/credentials.json');
 
-
-
 var MENU = undefined;
 var ACCOUNTS = undefined;
+
+function lcg(seed) {
+  return (0x43FD43FD * seed + 0xC39EC3) & (0xFFFFFF);
+}
 
 async function loadSavedCredentialsIfExist() {
   try {
@@ -52,26 +54,29 @@ export async function authorize() {
   return client;
 }
 
+export async function refreshMenu(auth) {
+  const sheets = google.sheets({ version: 'v4', auth });
+  try {
+    const res = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: 'Menu!B2:F',
+      majorDimension: 'ROWS',
+    });
+    MENU = {
+      tags: ["id", "name", "price", "category", "stock"], ids: res.data.values.map((entry) => entry[0]),
+      values: res.data.values.reduce((map, obj) => {
+        map[obj[0]] = obj;
+        return map;
+      }, {})
+    };
+  }
+  catch (err) {
+    return Promise.reject("Unable to get menu");
+  }
+}
 export async function getMenu(auth) {
   if (MENU === undefined) {
-    const sheets = google.sheets({ version: 'v4', auth });
-    try {
-      const res = await sheets.spreadsheets.values.get({
-        spreadsheetId: SPREADSHEET_ID,
-        range: 'Menu!B2:F',
-        majorDimension: 'ROWS',
-      });
-      MENU = {
-        tags: ["id", "name", "price", "category", "stock"], ids: res.data.values.map((entry) => entry[0]),
-          values: res.data.values.reduce((map, obj) => {
-            map[obj[0]] = obj;
-            return map;
-          }, {})
-      };
-    }
-    catch (err) {
-      return Promise.reject("Unable to get menu");
-    }
+    return refreshMenu(auth);
   }
   return Promise.resolve(MENU);
 }
@@ -108,7 +113,7 @@ export async function getAccountInfo(auth, email) {
     const sheets = google.sheets({ version: 'v4', auth });
     try {
       const res = await sheets.spreadsheets.values.get({
-        spreadsheetId: '15GWYVCJnuSpHrB5T5eNYLlaHlxbrEFelh9i66xxpbFI',
+        spreadsheetId: SPREADSHEET_ID,
         range: `Transactions!R${1}C${2 * index + 1}:R${3}C${2 * index + 2}`,
         majorDimension: 'ROWS',
       });
@@ -126,10 +131,10 @@ export async function writeTransaction(auth, transaction) {
 
   try {
     const info = await getAccountInfo(auth, transaction.email);
-    let res = {};
-    res['time'] = moment().format('YYYY/MM/DD, HH:mm:ss');
+    let ret = {};
+    ret['time'] = moment().format('YYYY/MM/DD, HH:mm:ss');
     var total = 0;
-    let receipt = res['time'];
+    let receipt = ret['time'];
     for (let i in transaction.order) {
       let entry = transaction.order[i];
       let itemInfo = MENU.values[entry.id];
@@ -142,6 +147,24 @@ export async function writeTransaction(auth, transaction) {
     }
     const sheets = google.sheets({ version: 'v4', auth });
     let r = parseInt(info.transactionCount, 10) + 4; let c = 2 * info.index + 1
+    
+    let id = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: 'Extras!A2:A2',
+      majorDimension: 'ROWS',
+    });
+    id = id.data.values[0][0];
+    id = lcg(parseInt(id, 10));
+    sheets.spreadsheets.values.update({
+      spreadsheetId: SPREADSHEET_ID,
+      range: 'Extras!A2:A2',
+      valueInputOption: 'RAW',
+      resource: { values: [[id]] }
+    });
+    receipt = id.toString().padStart(9, '0') + "\n" + receipt;
+    ret['order_number'] = id;
+    ret['total'] = total;
+
     let request = {
       spreadsheetId: SPREADSHEET_ID,
       range: `Transactions!R${r}C${c}:R${r}C${c+1}`,
@@ -153,13 +176,16 @@ export async function writeTransaction(auth, transaction) {
       transaction.order.forEach((entry) => {
         let itemInfo = MENU.values[entry.id];
         itemInfo[4] -= entry.count;
-        data.push({ range: `Menu!F${MENU.ids.indexOf(entry.id) + 2}:F${MENU.ids.indexOf(entry.id) + 2}`, values: [[itemInfo[4]]]});
+        data.push({ range: `Menu!F${MENU.ids.indexOf(entry.id) + 2}:F${MENU.ids.indexOf(entry.id) + 2}`, values: [[itemInfo[4]]] });
       });
       return sheets.spreadsheets.values.batchUpdate({
         spreadsheetId: SPREADSHEET_ID,
         resource: { data: data, valueInputOption: 'RAW' }
       }).then((res) => {
-        return Promise.resolve({finalDebt: parseFloat(info.debt.slice(1),10) + total});
+        ret['finalDebt'] = parseFloat(info.debt.slice(1), 10) + total;
+        return Promise.resolve(ret);
+      }).catch((err) => {
+        console.log(err);
       });
     }).catch((err) => { return Promise.reject('Unable to complete transaction') });
   }
