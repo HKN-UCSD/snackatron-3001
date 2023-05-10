@@ -1,11 +1,15 @@
+import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
-import { authorize, getMenu, refreshMenu, writeTransaction, formatColumn } from './google.js';
+import { authorize, getMenu, refreshMenu, writeTransaction } from './google.js';
 
 const PORT = 3001;
 const app = express();
 //app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
+
+  
+app.use(express.static(path.resolve('./build')));
 
 /*
  * Forces the menu cache to refresh
@@ -49,18 +53,9 @@ app.post("/transaction", (req, res) => {
   });
 });
 
-/*
- * Reformats the column specified by body: {col: <col>}
- * One column is one email
- */
-app.post("/format", (req, res) => {
-  authorize().then((auth) => formatColumn(auth, body.col)).then((data) => {
-    res.json({ success: true });
-  }).catch((err) => {
-    res.status(400).send({ message: err });
-  });
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('./build', 'index.html'));
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

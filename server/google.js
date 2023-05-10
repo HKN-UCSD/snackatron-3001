@@ -106,7 +106,7 @@ export async function getAccounts(auth) {
   return Promise.resolve(ACCOUNTS);
 }
 
-export async function formatColumn(auth, col) {
+async function formatColumn(auth, col) {
   let c0 = 2 * col;
   let c1 = 2 * col + 1;
   let c2 = 2 * col + 2;
