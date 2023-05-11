@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import Popup from './components/Popup'
 import './App.css';
 
 function App() {
@@ -9,7 +10,12 @@ function App() {
         <div id="menu"></div>
         <div id="cart">
           <div id="cart-list">Cart</div>
-          <div id="checkout">Checkout</div>
+          <div id="checkout">
+            <button>Checkout</button>
+            <Popup trigger={true}>
+              
+            </Popup>
+          </div>
         </div>
       </div>
     </div>

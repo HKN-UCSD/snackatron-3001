@@ -1,0 +1,77 @@
+.popup{
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 33px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    
+}
+
+.popup-inner {
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    max-width: 640px;
+    background-color: white;
+    border: 5px;
+    padding: 50px;
+    display: grid;
+    grid-template-areas: 
+    'header header' 
+    'main main' 'body body' 
+    'footer-left footer-right';
+    gap: 10px;
+
+}
+
+.popup-inner .confirm-button {
+    
+    
+    background-color: #D9FFD2;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    grid-area: footer-left;
+    place-self: center;
+
+}
+
+.popup-inner .cancel-button {
+    
+    
+    background-color: #ffd2d2;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    grid-area: footer-right;
+    place-self: center;
+}
+
+#total-popup {
+    grid-area: header;
+    place-self: center;
+    position: absolute;
+    top:-100px;
+    
+    
+}
+
+#email-box{
+    grid-area: body;
+    place-self: center;
+    width: 60%;
+    border-radius: 10px;
+}
+
+#email-text{
+    grid-area: main;
+    place-content: left;
+    font-size: smaller;
+    
+}
