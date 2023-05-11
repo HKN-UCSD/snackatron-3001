@@ -11,7 +11,7 @@ interface Order {
 export async function getMenu() {
   return fetch('/menu', {
     method: 'GET',
-  }).then((res) => res.json());
+  }).then((res) => res.json()).catch((err) => console.log(err));
 }
 export async function refreshMenu() {
   return fetch('/menu', {
@@ -19,7 +19,7 @@ export async function refreshMenu() {
     headers: {
       "Content-type": "application/json",
     }
-  }).then((res) => res.json());
+  }).then((res) => res.json()).catch((err) => console.log(err));
 }
 
 export async function checkout(order : Order) {
@@ -29,5 +29,5 @@ export async function checkout(order : Order) {
     headers: {
       "Content-type": "application/json",
     }
-  }).then((res) => res.json());
+  }).then((res) => res.json()).catch((err) => console.log(err));
 }
