@@ -45,3 +45,10 @@
     flex: 0 0 3em;
 }
 
+#checkout-btn{
+    background-color: #d9ffd2;
+    border-radius: 16px;
+    margin: 16px;
+    flex: 0 0 3em;
+}
+

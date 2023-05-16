@@ -11,7 +11,7 @@ function App() {
         <div id="cart">
           <div id="cart-list">Cart</div>
           <div id="checkout">
-            <button>Checkout</button>
+            <button id="checkout-btn">Checkout</button>
             <Popup trigger={true}>
               
             </Popup>

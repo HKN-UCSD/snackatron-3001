@@ -15,16 +15,18 @@
 
 .popup-inner {
     position: relative;
-    padding: 32px;
+    
     width: 100%;
     max-width: 640px;
     background-color: white;
     border: 5px;
     padding: 50px;
+    height: 100%;
     display: grid;
     grid-template-areas: 
     'header header' 
-    'main main' 'body body' 
+    'main main' 
+    'body body' 
     'footer-left footer-right';
     gap: 10px;
 
@@ -53,19 +55,16 @@
     place-self: center;
 }
 
-#total-popup {
+#total-popup-container {
     grid-area: header;
-    place-self: center;
-    position: absolute;
-    top:-100px;
-    
-    
+    text-align: center;
+    width:100%;
 }
 
 #email-box{
     grid-area: body;
     place-self: center;
-    width: 60%;
+    width: 100%;
     border-radius: 10px;
 }
 
@@ -73,5 +72,5 @@
     grid-area: main;
     place-content: left;
     font-size: smaller;
-    
+    text-align: start;
 }
