@@ -75,6 +75,10 @@
   color: black;
 }
 
+hr {
+    margin: 0px;
+}
+
 #panels {
     min-width: 100vw;
     flex: 1 0 1px;
@@ -83,56 +87,85 @@
 
 #info {
     flex: 3 3 100px;
+    position: relative;
+}
+#logo {
+    width: 300px;
+    height: auto;
+}
+#instructions {
+    font-family:"Poppins";
+    font-size: 36px;
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 25px;
+    width: 250px;
+}
+#ty {
+    font-family:"Poppins";
+    font-weight: 500;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    width: 250px;
 }
 #menu {
     background-color: #ededed;
     flex: 12 12 100px;
     border-radius: 16px;
     margin: 16px;
+    height: 94vh;
+    overflow: hidden;
 }
-#cart {
-    flex: 5 5 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-}
-#cart-list {
-    background-color: #ffffff;
-    border-radius: 16px;
-    flex: 1 0 auto;
-    margin: 16px 16px 0px 16px;
+#prices {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 103%;
+    height: 78vh;
 }
 .title {
     font-family: "Poppins";
     font-size: 40px;
     font-weight: 500;
 }
-#price-table {
+.category {
+    font-family: "Poppins";
+    font-size: 32px;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: bottom;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin: 0;
+}
+.price-table {
     table-layout: fixed;
     width: 100%;
 }
-#price-table td:nth-child(1) {
+.price-table td:nth-child(1) {
     font-family: "Poppins";
     font-size: 20px;
     font-weight: 700;
     text-align: left;
-    width: 70%;
-    padding-left: 10px;
+    width: 84%;
+    padding-left: 40px;
 }
-#price-table td:nth-child(2) {
+.price-table td:nth-child(2) {
     font-family: "Poppins";
     font-weight: 500;
     font-size: 20px;
     text-align: right;
-    width: 18%;
+    width: 8%;
     vertical-align: middle;
 }
-#price-table td:nth-child(3) {
-    width: 12%;
+.price-table td:nth-child(3) {
+    text-align: left;
+    width: 8%;
 }
 .add {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 500;
     background-color: rgba(0,0,0,0);
     border-width: 0px;
@@ -142,33 +175,48 @@
     font-weight: 700;
     cursor: pointer;
 }
-.category {
-    font-family: "Poppins";
-    font-size: 32px;
-    font-weight: 700;
-    padding: 0px;
+#cart {
+    flex: 5 5 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100vh;
+    overflow: hidden;
+}
+#cart-list {
+    background-color: #ffffff;
+    border-radius: 16px;
+    margin: 16px 16px 0px 16px;
+    height: 75vh;
+    overflow: hidden;
+}
+#cart-items {
+    height: 59vh;
+    width: 105%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
 }
 #cart-table {
     table-layout: fixed;
-    width: 100%;
 }
 #cart-table td:nth-child(1) {
     font-family: "Poppins";
     font-size: 20px;
     font-weight: 700;
     text-align: left;
-    width: 70%;
     padding-left: 10px;
+    width: 84%;
 }
 #cart-table td:nth-child(2) {
     font-family: "Poppins";
     font-weight: 500;
     font-size: 20px;
-    width: 18%;
     vertical-align: middle;
+    width: 8%;
 }
 #cart-table td:nth-child(3) {
-    width: 12%;
+    width: 8%;
 }
 .trash-img {
     height: 24px;
