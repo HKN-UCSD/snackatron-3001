@@ -12,7 +12,7 @@ interface Menu {
   ids: string[];
   [values: string]: string[];
 }
-interface Reciept {
+interface Receipt {
   orderNumber: string;
   finalDebt: number;
   total: number;
@@ -36,7 +36,7 @@ export async function refreshMenu(): Promise<Result> {
   }).then((res) => res.json()).catch((err) => { console.log(err); return { success: false}; });
 }
 
-export async function checkout(order: Order): Promise<Reciept | Result> {
+export async function checkout(order: Order): Promise<Receipt | Result> {
   return fetch('/transaction', {
     method: 'POST',
     body: JSON.stringify(order),
