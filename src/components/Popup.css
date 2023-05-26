@@ -20,7 +20,8 @@
     max-width: 640px;
     background-color: white;
     border: 5px;
-    padding: 50px;
+    border-radius: 33px;
+    padding: 0px 50px 0px 50px;
     height: 100%;
     display: grid;
     grid-template-areas: 
