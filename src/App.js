@@ -18,7 +18,7 @@ function App() {
                 <table class="price-table" frame="hsides" rules="rows">
                     <tr>
                         <td>Chicken Bake</td>
-                        <td>$1.00</td>
+                        <td>$00.00</td>
                         <td>
                             <button class="add">+</button>
                         </td>
@@ -104,160 +104,177 @@ function App() {
                     </tr>
                 </table>
             </div>
+            <hr></hr>
         </div>
         <div id="cart">
           <div id="cart-list">
             <h1 class="title">Cart</h1>
             <hr></hr>
             <div id="cart-items">
-                <table id="cart-table" frame="void" rules="rows">
+                <table>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake Chicken Bake Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$1.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="cart-row">
+                            <p class="cart-item">Chicken Bake</p>
+                            <p class="cart-price">$00.00</p>
                             <button class="trash">
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
-                        </td>
-                    </tr>   
+                        </div>
+                        <hr></hr>
+                    </tr>
                 </table>
             </div>
-            
+            <hr></hr>
           </div>
           <button id="checkout">Checkout</button>
         </div>
