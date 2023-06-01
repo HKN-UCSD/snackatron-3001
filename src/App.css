@@ -119,12 +119,6 @@ hr {
     height: 94vh;
     overflow: hidden;
 }
-#prices {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 103%;
-    height: 78vh;
-}
 .title {
     font-family: "Poppins";
     font-size: 40px;
@@ -141,29 +135,44 @@ hr {
     padding-top: 20px;
     margin: 0;
 }
-.price-table {
-    table-layout: fixed;
+#menu-items {
+    height: 80vh;
+    width: 102.5%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+table {
     width: 100%;
 }
-.price-table td:nth-child(1) {
+tr {
+    width: 100%;
+}
+.menu-row {
+    display: grid;
+    width: 100%;
+    overflow-y: hidden;
+    grid-template-columns: 85% 10% 5%;
+    margin: 0;
+}
+.menu-item {
+    grid-column: 1;
     font-family: "Poppins";
     font-size: 20px;
     font-weight: 700;
     text-align: left;
-    width: 80%;
-    padding-left: 40px;
+    padding-left: 10px;
+    margin: 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
 }
-.price-table td:nth-child(2) {
+.menu-price {    
     font-family: "Poppins";
     font-weight: 500;
     font-size: 20px;
     text-align: right;
-    width: 12%;
-    vertical-align: right;
-}
-.price-table td:nth-child(3) {
-    text-align: middle;
-    width: 8%;
+    grid-column: 2;
+    margin: 0px;
 }
 .add {
     font-size: 28px;
@@ -201,18 +210,11 @@ hr {
     overflow-y: scroll;
     overflow-x: hidden;
 }
-table {
-    width: 100%;
-}
-tr {
-    width: 100%;
-}
 .cart-row {
     display: grid;
     width: 100%;
     overflow-y: hidden;
     grid-template-columns: 65% 20% 15%;
-    grid-template-rows: repeat(auto-fill minmax(300px,  lfr));
     margin: 0;
 }
 .cart-item {

@@ -13,94 +13,110 @@ function App() {
         <div id="menu">
             <h1 class="title">Prices</h1>
             <hr></hr>
-            <div id="prices">
-                <h1 class="category">Snacks</h1>
-                <table class="price-table" frame="hsides" rules="rows">
+            <div id="menu-items">
+                <table>
+                    <h1 class="category">Snacks</h1>
+                    <hr></hr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$00.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake Chicken Bake Chicken Bake</p>
+                            <p class="menu-price">$00.00</p>
                             <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
                             <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
-                </table>
-                <h1 class="category">Drinks</h1>
-                <table class="price-table" frame="hsides" rules="rows">
+                    <h1 class="category">Drinks</h1>
+                    <hr></hr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake Chicken Bake Chicken Bake</p>
+                            <p class="menu-price">$00.00</p>
                             <button class="add">+</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
-                            <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
                             <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
-                </table>
-                <h1 class="category">Stuff</h1>
-                <table class="price-table" frame="hsides" rules="rows">
+                    <h1 class="category">Stuff</h1>
+                    <hr></hr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake Chicken Bake Chicken Bake</p>
+                            <p class="menu-price">$00.00</p>
                             <button class="add">+</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
-                            <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
                             <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
-                </table>
-                <h1 class="category">Stuff Again</h1>
-                <table class="price-table" frame="hsides" rules="rows">
+                    <h1 class="category">Chicken Bake</h1>
+                    <hr></hr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake Chicken Bake Chicken Bake</p>
+                            <p class="menu-price">$00.00</p>
                             <button class="add">+</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
-                            <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
                     </tr>
                     <tr>
-                        <td>Chicken Bake</td>
-                        <td>$1.00</td>
-                        <td>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
                             <button class="add">+</button>
-                        </td>
+                        </div>
+                        <hr></hr>
+                    </tr>
+                    <tr>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
+                            <button class="add">+</button>
+                        </div>
+                        <hr></hr>
+                    </tr>
+                    <tr>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
+                            <button class="add">+</button>
+                        </div>
+                        <hr></hr>
+                    </tr>
+                    <tr>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
+                            <button class="add">+</button>
+                        </div>
+                        <hr></hr>
+                    </tr>
+                    <tr>
+                        <div class="menu-row">
+                            <p class="menu-item">Chicken Bake</p>
+                            <p class="menu-price">$1.00</p>
+                            <button class="add">+</button>
+                        </div>
                     </tr>
                 </table>
             </div>
@@ -270,7 +286,6 @@ function App() {
                                 <img class="trash-img" src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"></img>
                             </button>
                         </div>
-                        <hr></hr>
                     </tr>
                 </table>
             </div>
