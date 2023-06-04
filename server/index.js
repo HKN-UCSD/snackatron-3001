@@ -1,0 +1,69 @@
+import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
+import { authorize, getMenu, refreshMenu, writeTransaction } from './google.js';
+
+const PORT = 3001;
+const app = express();
+//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
+
+  
+app.use(express.static(path.resolve('./build')));
+
+/*
+ * Forces the menu cache to refresh
+ */
+app.post("/menu", (req, res) => {
+  authorize().then(refreshMenu).then((data) => {
+    res.json({ success: true });
+  }).catch((err) => {
+    res.status(400).send({ message: err });
+  });
+});
+
+/*
+ * Responds with the menu in the following format
+ * {
+ *    tags: ["id", "name", "price", "category", "stock"],
+ *    ids: [<item ids in google sheets order>],
+ *    values: {
+ *      <id> : [<as tags above>]
+ *      ...
+ *    }
+ * }
+ */
+app.get("/menu", (req, res) => {
+  authorize().then(getMenu).then((data) => {
+    res.json(data);
+  }).catch((err) => {
+    res.status(400).send({ message: err });
+  });
+});
+
+/**
+ * body: {email: <email>, order: [{id: <id>, count: <count>}]}
+ * responds with {
+ *    orderNumber: <random 9 digit order number>,
+ *    finalDebt: <debt after transaction>,
+ *    total: <total of transaction>,
+ *    time: <timestamp of transaction>
+ * }
+ */
+app.post("/transaction", (req, res) => {
+  authorize().then((auth) => writeTransaction(auth, req.body)).then((data) => {
+    res.json(data);
+  }).catch((err) => {
+    res.status(400).send({ message: err });
+  });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('./build', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
+});
+//Try authorizing once to make sure refresh token is stored
+authorize();
