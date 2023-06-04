@@ -1,3 +1,68 @@
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Thin.ttf");
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-ThinItalic.ttf");
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Regular.ttf");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Italic.ttf");
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Medium.ttf");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-MediumItalic.ttf");
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Bold.ttf");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-BoldItalic.ttf");
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-Black.ttf");
+	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/poppins/Poppins-BlackItalic.ttf");
+	font-weight: 900;
+	font-style: italic;
+}
+
 .App {
   text-align: center;
   background-color: #262933;
@@ -10,37 +75,192 @@
   color: black;
 }
 
+hr {
+    margin: 0px;
+}
+
 #panels {
     min-width: 100vw;
     flex: 1 0 1px;
     display: flex;
+    flex-direction: row;
 }
-
 #info {
     flex: 3 3 100px;
+    position: relative;
+}
+#logo {
+    width: 300px;
+    height: auto;
+}
+#instructions {
+    font-family:"Poppins";
+    font-size: 36px;
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 25px;
+    width: 250px;
+}
+#ty {
+    font-family:"Poppins";
+    font-weight: 500;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    width: 250px;
 }
 #menu {
     background-color: #ededed;
     flex: 12 12 100px;
     border-radius: 16px;
     margin: 16px;
+    height: 94vh;
+    overflow: hidden;
+}
+.title {
+    font-family: "Poppins";
+    font-size: 40px;
+    font-weight: 500;
+    margin: 0;
+}
+.category {
+    font-family: "Poppins";
+    font-size: 32px;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: bottom;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin: 0;
+}
+#menu-items {
+    height: 80vh;
+    width: 102.5%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+table {
+    width: 100%;
+}
+tr {
+    width: 100%;
+}
+.menu-row {
+    display: grid;
+    width: 100%;
+    overflow-y: hidden;
+    grid-template-columns: 85% 10% 5%;
+    margin: 0;
+}
+.menu-item {
+    grid-column: 1;
+    font-family: "Poppins";
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    padding-left: 10px;
+    margin: 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+.menu-price {    
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    text-align: right;
+    grid-column: 2;
+    margin: 0px;
+}
+.add {
+    font-size: 28px;
+    font-weight: 500;
+    background-color: rgba(0,0,0,0);
+    border-width: 0px;
+    vertical-align: middle;
+}
+.add:hover {
+    font-weight: 700;
+    cursor: pointer;
+}
+#copyright {
+    font-size: 14px;
+    margin: 0px;
 }
 #cart {
     flex: 5 5 100px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
 }
 #cart-list {
     background-color: #ffffff;
     border-radius: 16px;
-    flex: 1 0 auto;
     margin: 16px 16px 0px 16px;
+    height: 75vh;
+    overflow: hidden;
+}
+#cart-items {
+    height: 60vh;
+    width: 105%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.cart-row {
+    display: grid;
+    width: 100%;
+    overflow-y: hidden;
+    grid-template-columns: 65% 20% 15%;
+    margin: 0;
+}
+.cart-item {
+    grid-column: 1;
+    font-family: "Poppins";
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    padding-left: 10px;
+    margin: 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+.cart-price {    
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    text-align: right;
+    grid-column: 2;
+    margin: 0px;
+}
+.trash-img {
+    height: 24px;
+    width: auto;
+    flex-shrink: 0;
+    margin-left: 5px;
+}
+.trash {
+    grid-column: 3;
+    border:none;
+    background-color: rgba(0,0,0,0);
+}
+.trash:hover {
+    cursor: pointer;
 }
 #checkout {
     background-color: #d9ffd2;
     border-radius: 16px;
     margin: 16px;
     flex: 0 0 3em;
+    font-family: "Poppins";
+    font-size: 40px;
+    font-weight: 500;
+}
+#checkout:hover {
+    background-color: #a9cfa2;
+    cursor: pointer;
 }
